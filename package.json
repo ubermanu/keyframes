@@ -1,0 +1,7 @@
+{
+  "name": "keyframes",
+  "version": "0.1.0",
+  "devDependencies": {
+    "rollup": "^2.33.1"
+  }
+}
