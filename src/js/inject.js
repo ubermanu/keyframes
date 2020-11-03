@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { showToast } from './toast'
+import { waitForTarget } from './element-picker'
 
 // Append CSS File to head
 // TODO: Make it removable
@@ -11,59 +12,9 @@ $.get(chrome.extension.getURL('ui/floatingElements.html'), function(data) {
 })
 
 showToast('Click on an element you would like to animate.')
+waitForTarget(runKeyframes)
 
-// Get target element from page
-var targetElementSelected = false
-$('body').children().mouseover(function(e) {
-  if (!targetElementSelected) {
-    $('.kf-element-picker').removeClass('kf-element-picker')
-    $(e.target).addClass('kf-element-picker')
-  }
-  return false
-}).mouseout(function() {
-  if (!targetElementSelected) {
-    $(this).removeClass('kf-element-picker')
-  }
-})
-
-var keyframeTargetElement
-$(document).click(function(event) {
-  if (!targetElementSelected) {
-    $('.kf-element-picker').removeClass('kf-element-picker')
-    event.preventDefault()
-    keyframeTargetElement = event.target
-    targetElementSelected = true
-
-    console.log('Target element selected:')
-    console.log(keyframeTargetElement)
-
-    // Inject HTML Content
-    // Append sidebar
-    $.get(chrome.extension.getURL('ui/sidebar.html'), function(data) {
-      $('body').append(data)
-    })
-
-    // Append timeline
-    $.get(chrome.extension.getURL('ui/timeline.html'), function(data) {
-      $('body').append(data)
-    })
-  }
-})
-
-// Wait for target element before executing actual functions
-function waitForTarget(targetElementSelected) {
-  if (targetElementSelected) {
-    runKeyframes()
-  } else {
-    setTimeout(function() {
-      waitForTarget()
-    }, 100)
-  }
-}
-
-waitForTarget()
-
-var runKeyframes = function() {
+var runKeyframes = function(keyframeTargetElement) {
 
   // Set up variables
   var currentStep = 0
