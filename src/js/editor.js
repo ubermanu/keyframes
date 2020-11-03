@@ -12,226 +12,230 @@ let stepValues = {}
 // Update data on page
 function updatePageData() {
   // Update current step number
-  $('.kf-current-step').each(function(index) {
+  $('.kf-current-step').each(() => {
     $(this).text(currentStep)
   })
 }
 
 // Append styles to page
-var animationProperties = ''
+let animationProperties = ''
 
 // Live update CSS on target element
-var targetStyles = ''
+let targetStyles = ''
+
+/**
+ * Presets elements in sidebar.
+ * @type {jQuery|HTMLElement}
+ */
+const presetRotate = $('#presetRotate')
+const presetScale = $('#presetScale')
+const presetTransX = $('#presetTransX')
+const presetTransY = $('#presetTransY')
+const presetSkewX = $('#presetSkewX')
+const presetSkewY = $('#presetSkewY')
+
+const presetTransOrigin = $('#presetTransOrigin')
+const presetBG = $('#presetBG')
+const presetOpacity = $('#presetOpacity')
+const presetColor = $('#presetColor')
+const presetFontSize = $('#presetFontSize')
+const presetFontWeight = $('#presetFontWeight')
+
+const presetWidth = $('#presetWidth')
+const presetHeight = $('#presetHeight')
+const presetMargin = $('#presetMargin')
+const presetPadding = $('#presetPadding')
+const presetBorder = $('#presetBorder')
+const presetShadow = $('#presetShadow')
+const presetOutline = $('#presetOutline')
+
+function hasTransformPresets() {
+  return presetRotate.val()
+    || presetScale.val()
+    || presetTransX.val()
+    || presetTransY.val()
+    || presetSkewX.val()
+    || presetSkewY.val()
+}
 
 function updateTargetStyles() {
 
-  targetStyles = ''
+  let css = {}
 
   // Transform props
-  var transformStyles = ''
-  if (!$('#presetRotate').val() && !$('#presetScale').val() && !$('#presetTransX').val() && !$('#presetTransY').val() && !$('#presetSkewX').val() && !$('#presetSkewY').val()) {
-    console.log('No transform props;')
-  } else {
-    transformStyles = 'transform:'
-    if ($('#presetRotate').val()) {
-      transformStyles += ' rotate(' + $('#presetRotate').val() + ')'
+  let transform = []
+  if (hasTransformPresets()) {
+    if (presetRotate.val()) {
+      transform.push('rotate(' + presetRotate.val() + ')')
     }
-    if ($('#presetScale').val()) {
-      transformStyles += ' scale(' + $('#presetScale').val() + ')'
+    if (presetScale.val()) {
+      transform.push('scale(' + presetScale.val() + ')')
     }
-    if ($('#presetTransX').val()) {
-      transformStyles += ' translateX(' + $('#presetTransX').val() + ')'
+    if (presetTransX.val()) {
+      transform.push('translateX(' + presetTransX.val() + ')')
     }
-    if ($('#presetTransY').val()) {
-      transformStyles += ' translateY(' + $('#presetTransY').val() + ')'
+    if (presetTransY.val()) {
+      transform.push('translateY(' + presetTransY.val() + ')')
     }
-    if ($('#presetSkewX').val()) {
-      transformStyles += ' skewX(' + $('#presetSkewX').val() + ')'
+    if (presetSkewX.val()) {
+      transform.push('skewX(' + presetSkewX.val() + ')')
     }
-    if ($('#presetSkewY').val()) {
-      transformStyles += ' skewY(' + $('#presetSkewY').val() + ')'
+    if (presetSkewY.val()) {
+      transform.push('skewY(' + presetSkewY.val() + ')')
     }
-
-    transformStyles += ';'
-    targetStyles += transformStyles
+    css['transform'] = transform.join(' ')
   }
 
+  css['transform-origin'] = presetTransOrigin.val()
+
   // Colors & Fonts
-  if ($('#presetTransOrigin').val()) {
-    targetStyles += 'transform-origin: ' + $('#presetTransOrigin').val() + ';'
-  }
-  // Colors & Fonts
-  if ($('#presetBG').val()) {
-    targetStyles += 'background: ' + $('#presetBG').val() + ';'
-  }
-  if ($('#presetOpacity').val()) {
-    targetStyles += 'opacity: ' + $('#presetOpacity').val() + ';'
-  }
-  if ($('#presetColor').val()) {
-    targetStyles += 'color: ' + $('#presetColor').val() + ';'
-  }
-  if ($('#presetFontSize').val()) {
-    targetStyles += 'font-size: ' + $('#presetFontSize').val() + ';'
-  }
-  if ($('#presetFontWeight').val()) {
-    targetStyles += 'font-weight: ' + $('#presetFontWeight').val() + ';'
-  }
+  css['background'] = presetBG.val()
+  css['opacity'] = presetOpacity.val()
+  css['color'] = presetColor.val()
+  css['font-size'] = presetFontSize.val()
+  css['font-weight'] = presetFontWeight.val()
 
   // Size & Spacing
-  if ($('#presetWidth').val()) {
-    targetStyles += 'width: ' + $('#presetWidth').val() + ';'
-  }
-  if ($('#presetHeight').val()) {
-    targetStyles += 'height: ' + $('#presetHeight').val() + ';'
-  }
-  if ($('#presetMargin').val()) {
-    targetStyles += 'margin: ' + $('#presetMargin').val() + ';'
-  }
-  if ($('#presetPadding').val()) {
-    targetStyles += 'padding: ' + $('#presetPadding').val() + ';'
-  }
+  css['width'] = presetWidth.val()
+  css['height'] = presetHeight.val()
+  css['margin'] = presetMargin.val()
+  css['padding'] = presetPadding.val()
 
   // Border / shadow
-  if ($('#presetBorder').val()) {
-    targetStyles += 'border: ' + $('#presetBorder').val() + ';'
-  }
-  if ($('#presetShadow').val()) {
-    targetStyles += 'box-shadow: ' + $('#presetShadow').val() + ';'
-  }
-  if ($('#presetOutline').val()) {
-    targetStyles += 'outline: ' + $('#presetOutline').val() + ';'
-  }
+  css['border'] = presetBorder.val()
+  css['box-shadow'] = presetShadow.val()
+  css['outline'] = presetOutline.val()
 
+  const styles = css.filter(prop => prop !== undefined && prop !== null)
   $(keyframeTargetElement).attr('style', '')
-  $(keyframeTargetElement).attr('style', targetStyles)
+  $(keyframeTargetElement).css(styles)
 }
+
+const animationDuration = $('#animationDuration')
+const animationIterations = $('#animationIterations')
+const animationDelay = $('#animationDelay')
+const animationTiming = $('#animationTiming')
+
+const kfStyleContainer = $('#kfStyleContainer')
 
 function appendStyles() {
   // Prepare animation properties
   animationProperties = ''
-  if (!$('#animationDuration').val()) {
-    $('#animationDuration').val('3s')
+  if (!animationDuration.val()) {
+    animationDuration.val('3s')
   }
-  if (!$('#animationIterations').val()) {
-    $('#animationIterations').val('infinite')
+  if (!animationIterations.val()) {
+    animationIterations.val('infinite')
   }
-  if (!$('#animationDelay').val()) {
-    $('#animationDelay').val('0s')
+  if (!animationDelay.val()) {
+    animationDelay.val('0s')
   }
   // 3s infinite ease-in-out
-  animationProperties += $('#animationDuration').val() + ' '
-  animationProperties += $('#animationIterations').val() + ' '
-  animationProperties += $('#animationDelay').val() + ' '
-  animationProperties += $('#animationTiming').val() + ';'
+  animationProperties += animationDuration.val() + ' '
+  animationProperties += animationIterations.val() + ' '
+  animationProperties += animationDelay.val() + ' '
+  animationProperties += animationTiming.val() + ';'
 
-
-  $('#kfStyleContainer').empty()
-
-  $('#kfStyleContainer').append('@keyframes yourAnimation{')
+  kfStyleContainer.empty()
+  kfStyleContainer.append('@keyframes yourAnimation{')
 
   $.each(stepStyles, function(key, val) {
-    $('#kfStyleContainer').append(key + '%{' + val + '}')
+    kfStyleContainer.append(key + '%{' + val + '}')
   })
-  $('#kfStyleContainer').append('}\n')
-  $('#kfStyleContainer').append('.elementToAnimate{ animation: yourAnimation ' + animationProperties + '}')
-  $('#kfStyleContainer').append('.animate-timeline-tracker{ animation: trackerAnimation ' + animationProperties + '}')
+
+  kfStyleContainer.append('}\n')
+  kfStyleContainer.append('.elementToAnimate{ animation: yourAnimation ' + animationProperties + '}')
+  kfStyleContainer.append('.animate-timeline-tracker{ animation: trackerAnimation ' + animationProperties + '}')
 }
 
+function getPresetValues() {
+  return [
+    presetRotate.val(),
+    presetScale.val(),
+    presetTransX.val(),
+    presetTransY.val(),
+    presetSkewX.val(),
+    presetSkewY.val(),
+    presetTransOrigin.val(),
+    presetBG.val(),
+    presetOpacity.val(),
+    presetColor.val(),
+    presetFontSize.val(),
+    presetFontWeight.val(),
+    presetWidth.val(),
+    presetHeight.val(),
+    presetMargin.val(),
+    presetPadding.val(),
+    presetBorder.val(),
+    presetShadow.val(),
+    presetOutline.val(),
+  ]
+}
+
+function setPresetValues(values) {
+  presetRotate.val(values[0])
+  presetScale.val(values[1])
+  presetTransX.val(values[2])
+  presetTransY.val(values[3])
+  presetSkewX.val(values[4])
+  presetSkewY.val(values[5])
+  presetTransOrigin.val(values[6])
+  presetBG.val(values[7])
+  presetOpacity.val(values[8])
+  presetColor.val(values[9])
+  presetFontSize.val(values[10])
+  presetFontWeight.val(values[11])
+  presetWidth.val(values[12])
+  presetHeight.val(values[13])
+  presetMargin.val(values[14])
+  presetPadding.val(values[15])
+  presetBorder.val(values[16])
+  presetShadow.val(values[17])
+  presetOutline.val(values[18])
+}
+
+// TODO: Get preset styles
+
+const kfTimelineBody = $('#kfTimelineBody')
 
 // Add a new step
 // Or change to existing
 function changeStep(percent) {
 
-  var newStepPercent = percent
-  var prevStep = currentStep
-  stepStyles[prevStep] = targetStyles
-  stepValues[prevStep] = [
-    $('#presetRotate').val(),
-    $('#presetScale').val(),
-    $('#presetTransX').val(),
-    $('#presetTransY').val(),
-    $('#presetSkewX').val(),
-    $('#presetSkewY').val(),
-    $('#presetTransOrigin').val(),
-    $('#presetBG').val(),
-    $('#presetOpacity').val(),
-    $('#presetColor').val(),
-    $('#presetFontSize').val(),
-    $('#presetFontWeight').val(),
-    $('#presetWidth').val(),
-    $('#presetHeight').val(),
-    $('#presetMargin').val(),
-    $('#presetPadding').val(),
-    $('#presetBorder').val(),
-    $('#presetShadow').val(),
-    $('#presetOutline').val(),
-  ]
+  let newStepPercent = percent
+  let prevStep = currentStep
 
+  stepStyles[prevStep] = targetStyles
+  stepValues[prevStep] = getPresetValues()
 
   if (!stepStyles[newStepPercent]) {
     stepStyles[newStepPercent] = targetStyles
-    stepValues[prevStep] = [
-      $('#presetRotate').val(),
-      $('#presetScale').val(),
-      $('#presetTransX').val(),
-      $('#presetTransY').val(),
-      $('#presetSkewX').val(),
-      $('#presetSkewY').val(),
-      $('#presetTransOrigin').val(),
-      $('#presetBG').val(),
-      $('#presetOpacity').val(),
-      $('#presetColor').val(),
-      $('#presetFontSize').val(),
-      $('#presetFontWeight').val(),
-      $('#presetWidth').val(),
-      $('#presetHeight').val(),
-      $('#presetMargin').val(),
-      $('#presetPadding').val(),
-      $('#presetBorder').val(),
-      $('#presetShadow').val(),
-      $('#presetOutline').val(),
-    ]
+    stepValues[prevStep] = getPresetValues()
   } else {
     // Set target element styles form existing step
     targetStyles = stepStyles[newStepPercent]
 
     // Set input vals
-    $('#presetRotate').val(stepValues[newStepPercent][0])
-    $('#presetScale').val(stepValues[newStepPercent][1])
-    $('#presetTransX').val(stepValues[newStepPercent][2])
-    $('#presetTransY').val(stepValues[newStepPercent][3])
-    $('#presetSkewX').val(stepValues[newStepPercent][4])
-    $('#presetSkewY').val(stepValues[newStepPercent][5])
-    $('#presetTransOrigin').val(stepValues[newStepPercent][6])
-    $('#presetBG').val(stepValues[newStepPercent][7])
-    $('#presetOpacity').val(stepValues[newStepPercent][8])
-    $('#presetColor').val(stepValues[newStepPercent][9])
-    $('#presetFontSize').val(stepValues[newStepPercent][10])
-    $('#presetFontWeight').val(stepValues[newStepPercent][11])
-    $('#presetWidth').val(stepValues[newStepPercent][12])
-    $('#presetHeight').val(stepValues[newStepPercent][13])
-    $('#presetMargin').val(stepValues[newStepPercent][14])
-    $('#presetPadding').val(stepValues[newStepPercent][15])
-    $('#presetBorder').val(stepValues[newStepPercent][16])
-    $('#presetShadow').val(stepValues[newStepPercent][17])
-    $('#presetOutline').val(stepValues[newStepPercent][18])
-
+    setPresetValues(stepValues[newStepPercent])
     updateTargetStyles()
   }
 
   // Clear timeline before adding again
-  $('#kfTimelineBody').empty()
-  $('#kfTimelineBody').append('<div id=\'timelineTracker\'></div>')
-  $('#kfTimelineBody').append('<div id=\'timelineMarker\'><b></b></div>')
+  kfTimelineBody.empty()
+  kfTimelineBody.append('<div id="timelineTracker"></div>')
+  kfTimelineBody.append('<div id="timelineMarker"><b></b></div>')
 
   $.each(stepStyles, function(key, val) {
-    $('#kfTimelineBody').append('<div class=\'timeline-step\' id=\'timelineStep' + key + '\' data-step=\'' + key + '\' style=\'left: ' + key + '%;\'><label>' + key + '</label></div>')
+    kfTimelineBody.append(
+      `<div class="timeline-step" id="timelineStep-${key}" data-step="${key}"
+            style="left: ${key}%"><label>${key}</label></div>`,
+    )
   })
 
   currentStep = newStepPercent
   // Set active class for current timeline step;
   $('.timeline-step').removeClass('active')
-  $('#timelineStep' + newStepPercent).addClass('active')
+  $('#timelineStep-' + newStepPercent).addClass('active')
 
   updatePageData()
 }
@@ -262,7 +266,7 @@ $('.timeline-step').click(function() {
 // Delete Step
 // Delete Step
 $('#deleteKeyframePos').click(function() {
-  var stepToDelete = currentStep
+  let stepToDelete = currentStep
   changeStep(0)
   delete stepStyles[stepToDelete]
   delete stepValues[stepToDelete]
