@@ -19,8 +19,11 @@
         "storage"
     ],
     "web_accessible_resources": [
-        "ui/*.html",
-        "styles/css/*.css"
+        "js/inject.js",
+        "styles/css/keyframes.css",
+        "ui/floatingElements.html",
+        "ui/sidebar.html",
+        "ui/timeline.html"
     ],
     "background": {
         "scripts": ["js/background.js"]

@@ -1,9 +1,7 @@
 import $ from 'jquery'
 
-alert('test')
-
 // Append CSS File to head
-$('head').append('<link href="' + chrome.extension.getURL('/styles/css/keyframes.css') + '" rel="stylesheet">')
+// $('head').append('<link href="' + chrome.extension.getURL('styles/css/keyframes.css') + '" rel="stylesheet">')
 
 // Append timeline
 $.get(chrome.extension.getURL('ui/floatingElements.html'), function(data) {
