@@ -1,7 +1,8 @@
 {
   "name": "keyframes",
   "version": "0.1.0",
-  "devDependencies": {
+  "dependencies": {
+    "jquery": "^3.5.1",
     "rollup": "^2.33.1",
     "rollup-plugin-chrome-extension": "^3.4.0"
   },
