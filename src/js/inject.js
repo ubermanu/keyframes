@@ -1,6 +1,8 @@
 import $ from 'jquery'
+import { showToast } from './toast'
 
 // Append CSS File to head
+// TODO: Make it removable
 $('head').append('<link href="' + chrome.extension.getURL('styles/css/keyframes.css') + '" rel="stylesheet">')
 
 // Append timeline
@@ -8,24 +10,7 @@ $.get(chrome.extension.getURL('ui/floatingElements.html'), function(data) {
   $('body').append(data)
 })
 
-var kfToast = $('#kfToast')
-
-function keyframesToast(message) {
-  setTimeout(() => {
-    kfToast.text(message)
-    kfToast.animate({
-      left: '0px',
-    }, 250, $.noop)
-  }, 100)
-
-  setTimeout(() => {
-    $('#kfToast').animate({
-      left: '-240px',
-    }, 250, $.noop)
-  }, 4000)
-}
-
-keyframesToast('Click on an element you would like to animate.')
+showToast('Click on an element you would like to animate.')
 
 // Get target element from page
 var targetElementSelected = false
@@ -294,25 +279,25 @@ var runKeyframes = function() {
       targetStyles = stepStyles[newStepPercent]
 
       // Set input vals
-      $('#presetRotate').val(stepValues[newStepPercent][0] || 'xx'),
-        $('#presetScale').val(stepValues[newStepPercent][1]),
-        $('#presetTransX').val(stepValues[newStepPercent][2]),
-        $('#presetTransY').val(stepValues[newStepPercent][3]),
-        $('#presetSkewX').val(stepValues[newStepPercent][4]),
-        $('#presetSkewY').val(stepValues[newStepPercent][5]),
-        $('#presetTransOrigin').val(stepValues[newStepPercent][6]),
-        $('#presetBG').val(stepValues[newStepPercent][7]),
-        $('#presetOpacity').val(stepValues[newStepPercent][8]),
-        $('#presetColor').val(stepValues[newStepPercent][9]),
-        $('#presetFontSize').val(stepValues[newStepPercent][10]),
-        $('#presetFontWeight').val(stepValues[newStepPercent][11]),
-        $('#presetWidth').val(stepValues[newStepPercent][12]),
-        $('#presetHeight').val(stepValues[newStepPercent][13]),
-        $('#presetMargin').val(stepValues[newStepPercent][14]),
-        $('#presetPadding').val(stepValues[newStepPercent][15]),
-        $('#presetBorder').val(stepValues[newStepPercent][16]),
-        $('#presetShadow').val(stepValues[newStepPercent][17]),
-        $('#presetOutline').val(stepValues[newStepPercent][18])
+      $('#presetRotate').val(stepValues[newStepPercent][0])
+      $('#presetScale').val(stepValues[newStepPercent][1])
+      $('#presetTransX').val(stepValues[newStepPercent][2])
+      $('#presetTransY').val(stepValues[newStepPercent][3])
+      $('#presetSkewX').val(stepValues[newStepPercent][4])
+      $('#presetSkewY').val(stepValues[newStepPercent][5])
+      $('#presetTransOrigin').val(stepValues[newStepPercent][6])
+      $('#presetBG').val(stepValues[newStepPercent][7])
+      $('#presetOpacity').val(stepValues[newStepPercent][8])
+      $('#presetColor').val(stepValues[newStepPercent][9])
+      $('#presetFontSize').val(stepValues[newStepPercent][10])
+      $('#presetFontWeight').val(stepValues[newStepPercent][11])
+      $('#presetWidth').val(stepValues[newStepPercent][12])
+      $('#presetHeight').val(stepValues[newStepPercent][13])
+      $('#presetMargin').val(stepValues[newStepPercent][14])
+      $('#presetPadding').val(stepValues[newStepPercent][15])
+      $('#presetBorder').val(stepValues[newStepPercent][16])
+      $('#presetShadow').val(stepValues[newStepPercent][17])
+      $('#presetOutline').val(stepValues[newStepPercent][18])
 
       updateTargetStyles()
     }
@@ -455,6 +440,4 @@ var runKeyframes = function() {
     $('#styleContainer').empty()
     $(keyframeTargetElement).attr('style', '')
   })
-
-
 }
