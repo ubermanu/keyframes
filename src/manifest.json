@@ -19,7 +19,8 @@
         "storage"
     ],
     "web_accessible_resources": [
-        "src/*"
+        "inject/*.js",
+        "inject/ui/*.html"
     ],
     "background": {
         "scripts": ["js/background.js"]
