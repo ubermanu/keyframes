@@ -2,10 +2,6 @@ console.log('Extension loaded') // TODO: Remove
 
 chrome.browserAction.onClicked.addListener(tab => {
 
-  chrome.tabs.insertCSS(tab.id, {
-    file: 'styles/css/keyframes.css'
-  })
-
   chrome.tabs.executeScript(tab.ib, {
     file: 'js/inject.js',
   })
