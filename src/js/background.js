@@ -1,19 +1,16 @@
-chrome.browserAction.onClicked.addListener(function (tab) {
-	// for the current tab, inject the "inject.js" file & execute it
+console.log('Extension loaded') // TODO: Remove
 
-    chrome.tabs.executeScript(tab.ib, {
-		file: './src/inject/jquery.min.js'
-	});
+chrome.browserAction.onClicked.addListener(function(tab) {
+  // for the current tab, inject the "inject.js" file & execute it
 
-    chrome.tabs.executeScript(tab.ib, {
-		file: './src/inject/ui.js'
-	});
+  chrome.tabs.executeScript(tab.ib, {
+    file: './inject/ui.js',
+  })
 
-    chrome.tabs.executeScript(tab.ib, {
-		file: './src/inject/functions.js'
-	});
-
-});
+  chrome.tabs.executeScript(tab.ib, {
+    file: './inject/functions.js',
+  })
+})
 
 
 //
