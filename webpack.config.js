@@ -13,7 +13,6 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader' },
-      { test: /\.(css)$/, use: ['css-loader', 'style-loader'] },
       {
         test: /\.(s[ac]ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
