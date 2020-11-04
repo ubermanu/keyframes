@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Toast from './Toast'
 import $ from 'jquery'
 import { useStore } from './store'
-import { select_element } from './actions'
+import { SELECT_ELEMENT } from './actions'
 
 /**
  * Selects an element on the page.
@@ -28,7 +28,7 @@ function ElementPicker() {
     $('.kf-element-picker').removeClass('kf-element-picker')
     e.preventDefault()
     console.log('Target element selected:', e.target)
-    dispatch(select_element(e.target))
+    dispatch(SELECT_ELEMENT(e.target))
   }
 
   useEffect(() => {
