@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStore } from './store'
 import { SET_ANIMATION_OPTION } from './actions'
+import $ from 'jquery'
 
 function AnimationOption({ label, children }) {
   return (
@@ -11,8 +12,17 @@ function AnimationOption({ label, children }) {
   )
 }
 
+function TimelineStep({ id }) {
+  return (
+    <div className="timeline-step" id={`timelineStep-${id}`}
+         data-step={id} style={{ left: `${id}%` }}>
+      <label>{id}</label>
+    </div>
+  )
+}
+
 function Timeline() {
-  const { dispatch } = useStore()
+  const { state, dispatch } = useStore()
 
   function handleChange(e) {
     dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
@@ -67,9 +77,9 @@ function Timeline() {
       </div>
 
       <div id="kfTimelineBody">
-        <div id='timelineMarker'>
-          <b>50%</b>
-        </div>
+        <div id="timelineTracker" />
+        <div id="timelineMarker"><b /></div>
+        {state.steps.map(step => <TimelineStep {...step} />)}
       </div>
 
       <div className="timeline-footer">

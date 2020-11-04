@@ -3,7 +3,13 @@
  */
 export const initialState = {
   element: null,
-  steps: [],
+  currentStep: 0,
+  steps: [
+    {
+      id: 0,
+      styles: {},
+    },
+  ],
   animation: {
     duration: '3s',
     iterations: 'infinite',
