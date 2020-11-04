@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
-import Timeline from './Timeline'
-import Toast from './Toast'
+import Sidebar from './Sidebar.jsx'
+import Timeline from './Timeline.jsx'
+import Toast from './Toast.jsx'
 
 function Editor() {
   return (
