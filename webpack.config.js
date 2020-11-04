@@ -18,7 +18,10 @@ module.exports = {
         test: /\.(s[ac]ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      { test: /\.(jpg|png|jpeg|gif)$/, use: ['file-loader'] },
+      {
+        test: /\.(jpg|png|jpeg|gif)$/,
+        use: 'base64-inline-loader?limit=1000&name=[name].[ext]',
+      },
     ],
   },
   mode: 'development',
