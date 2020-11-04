@@ -27,7 +27,6 @@ function reducer(state = initialState, action) {
     case 'SELECT_ELEMENT':
       return { ...state, element: action.element }
     case 'ADD_STEP':
-      console.log(state.steps)
       return { ...state, steps: [...state.steps, action.step] }
     case 'SET_ANIMATION_OPTION':
       if (action.option in state.animation) {

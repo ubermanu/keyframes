@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useStore } from './store'
-import { SET_ANIMATION_OPTION } from './actions'
+import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
 import $ from 'jquery'
 
 function AnimationOption({ label, children }) {
@@ -40,6 +40,7 @@ function Timeline() {
 
   function handleClick(e) {
     console.log(hoverNewStepPos)
+    dispatch(ADD_STEP(hoverNewStepPos))
   }
 
   function handleChange(e) {

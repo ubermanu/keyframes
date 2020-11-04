@@ -8,13 +8,12 @@ export function SELECT_ELEMENT(element) {
 }
 
 /**
- * @param percent
- * @param attributes
- * @returns {{attributes: *, type: string, percent: *}}
+ * @param id
+ * @returns {{step: {id: *}, type: string}}
  * @constructor
  */
-export function ADD_STEP(percent, attributes) {
-  return { type: 'ADD_STEP', percent, attributes }
+export function ADD_STEP(id) {
+  return { type: 'ADD_STEP', step: { id } }
 }
 
 /**
