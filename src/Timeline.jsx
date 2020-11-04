@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useStore } from './store'
 import { SET_ANIMATION_OPTION } from './actions'
 import $ from 'jquery'
@@ -23,6 +23,24 @@ function TimelineStep({ id }) {
 
 function Timeline() {
   const { state, dispatch } = useStore()
+  const markerEl = useRef(null)
+  let hoverNewStepPos = 0
+
+  function handleMouseMove(e) {
+    const elementMousePos = e.pageX - $(e.target).offset().left + 5
+    const elementWidth = $(e.target).width()
+    const percentagePos = (elementMousePos / elementWidth * 100)
+    const markerLeft = percentagePos.toString().substring(0, 4)
+
+    // FIXME: Marker is slow
+    $(markerEl.current).css('left', markerLeft + '%')
+    $('b', markerEl.current).text(markerLeft.split('.')[0] + '%')
+    hoverNewStepPos = markerLeft.split('.')[0]
+  }
+
+  function handleClick(e) {
+    console.log(hoverNewStepPos)
+  }
 
   function handleChange(e) {
     dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
@@ -76,10 +94,11 @@ function Timeline() {
 
       </div>
 
-      <div id="kfTimelineBody">
+      <div id="kfTimelineBody" onMouseMove={handleMouseMove}
+           onClick={handleClick}>
         <div id="timelineTracker" />
-        <div id="timelineMarker"><b /></div>
-        {state.steps.map(step => <TimelineStep {...step} />)}
+        <div id="timelineMarker" ref={markerEl}><b /></div>
+        {state.steps.map((step, k) => <TimelineStep key={k} {...step} />)}
       </div>
 
       <div className="timeline-footer">
