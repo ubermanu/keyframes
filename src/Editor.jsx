@@ -6,10 +6,11 @@ import { useStore, withStore } from './store'
 
 function Editor() {
   const { state } = useStore()
+  const { element } = state
   return (
     <>
-      {!state.element && <ElementPicker />}
-      {state.element && (
+      {!element && <ElementPicker />}
+      {element && (
         <>
           <Sidebar />
           <Timeline />
