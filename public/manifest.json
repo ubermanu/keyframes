@@ -3,13 +3,15 @@
   "name": "React Chrome Extension",
   "version": "0.1.0",
   "icons": {
-    "192": "logo192.png",
-    "512": "logo512.png"
+    "16": "keyframes-16.png",
+    "48": "keyframes-48.png",
+    "128": "keyframes-128.png"
   },
   "browser_action": {
     "default_icon": {
-      "192": "logo192.png",
-      "512": "logo512.png"
+      "16": "keyframes-16.png",
+      "48": "keyframes-48.png",
+      "128": "keyframes-128.png"
     }
   },
   "background": {
