@@ -1,0 +1,34 @@
+// out: ../keyframes.css, compress: true
+
+@import 'variables';
+@import 'misc';
+@import 'sidebar';
+@import 'timeline';
+@import 'universal';
+
+
+.kf-sidebar,
+.kf-timeline {
+  z-index: 999999999;
+}
+
+
+// Exit button
+#closeKeyframes {
+  color: rgba($red, 0.5);
+  transition: $transition;
+
+  &:hover {
+    cursor: pointer;
+    color: $red;
+    transition: $transition;
+  }
+}
+
+// Highlight target element
+.kf-element-picker {
+  cursor: pointer;
+  outline: 3px dashed $red;
+  transition: outline 0.075s;
+  background-color: rgba($blue, 0.2) !important;
+}
