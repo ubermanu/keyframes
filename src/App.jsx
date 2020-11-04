@@ -7,10 +7,10 @@ import Toast from './Toast'
 function App() {
   return (
     <div className="App">
-      <Toast/>
-      <Sidebar/>
-      <Timeline/>
-      <style id="kfStyleContainer"/>
+      <Toast message={'Click on an element you would like to animate.'} />
+      <Sidebar />
+      <Timeline />
+      <style id="kfStyleContainer" />
     </div>
   )
 }
