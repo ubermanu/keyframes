@@ -30,7 +30,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
-      inject: false,
+      inject: !!process.env.WEBPACK_DEV_SERVER,
     }),
   ],
 }
