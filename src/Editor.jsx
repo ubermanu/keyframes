@@ -5,12 +5,12 @@ import Toast from './Toast'
 
 function Editor() {
   return (
-    <div className="App">
+    <>
       <Toast message={'Click on an element you would like to animate.'} />
       <Sidebar />
       <Timeline />
       <style id="kfStyleContainer" />
-    </div>
+    </>
   )
 }
 
