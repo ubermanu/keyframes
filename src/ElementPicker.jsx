@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import Toast from './Toast'
 import $ from 'jquery'
+import { useEditor } from './Editor'
 
 function ElementPicker() {
+
+  const { state, dispatch } = useEditor()
+  const { element } = state
+
   useEffect(() => {
 
     // const getURL = chrome.extension.getURL
@@ -31,6 +36,7 @@ function ElementPicker() {
         target = event.target
 
         console.log('Target element selected:', target)
+        dispatch({ type: 'SELECT_ELEMENT', payload: target })
       }
     })
 
