@@ -10,36 +10,11 @@ if (window.REACT_EXTENSION_ID === undefined) {
 
 function handleLoad() {
   let data = this.responseText
-  let scripts = []
-
-  // Fix static resource urls
-  data = data.replace(/src=\"(([^"]|\\")+)\"/gi, function(
-    match, url,
-  ) {
-    const extensionUrl = chrome.runtime.getURL(url.replace(/^\//g, ''))
-    return `src="${extensionUrl}"`
-  })
-
-  console.log(data)
-
-  // Gather all the scripts in the generated template
-  data = data.replace(/<script[^<]*<\/script>/gi, function(match) {
-    const src = /src="(.*?)"/g.exec(match)
-    scripts.push(src[1])
-    return ''
-  })
 
   // Create container
   const container = document.createElement('div')
   container.setAttribute('id', window.REACT_EXTENSION_ID)
   container.insertAdjacentHTML('beforeend', data)
-
-  // Insert scripts manually
-  for (let src of scripts) {
-    const script = document.createElement('script')
-    script.setAttribute('src', src)
-    container.append(script)
-  }
 
   // Append container to body
   document.querySelector('body').append(container)
