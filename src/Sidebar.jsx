@@ -14,15 +14,16 @@ function PresetGroup({ title, children }) {
   )
 }
 
-function Preset({ label, children }) {
+function Preset({ label, ...inputProps }) {
   return (
     <div className="kf-preset-option">
       <div className="kf-po-label">{label}</div>
-      <div className="kf-po-value">{children}</div>
+      <div className="kf-po-value">
+        <input className="kf-po-input" {...inputProps} />
+      </div>
     </div>
   )
 }
-
 
 function Sidebar() {
   return (
@@ -38,158 +39,59 @@ function Sidebar() {
       </div>
 
       <PresetGroup title={'Transform'}>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Rotate</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="180deg"
-                   id="presetRotate" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Scale</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="number" step="0.1"
-                   placeholder="1.5" id="presetScale" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">TranslateX</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="100px"
-                   id="presetTransX" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">TranslateY</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="-20%"
-                   id="presetTransY" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">SkewX</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="15deg"
-                   id="presetSkewX" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">SkewY</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="-25deg"
-                   id="presetSkewY" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Transform Origin</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="50% 50%"
-                   id="presetTransOrigin" />
-          </div>
-        </div>
+        <Preset label={'Rotate'} type="text" placeholder="180deg"
+                id="presetRotate" />
+        <Preset label={'Scale'} type="number" step="0.1" placeholder="1.5"
+                id="presetScale" />
+        <Preset label={'TranslateX'} type="text" placeholder="100px"
+                id="presetTransX" />
+        <Preset label={'TranslateY'} type="text" placeholder="-20%"
+                id="presetTransY" />
+        <Preset label={'SkewX'} type="text" placeholder="15deg"
+                id="presetSkewX" />
+        <Preset label={'SkewY'} type="text" placeholder="-25deg"
+                id="presetSkewY" />
+        <Preset label={'Transform Origin'} type="text" placeholder="50% 50%"
+                id="presetTransOrigin" />
       </PresetGroup>
 
       <PresetGroup title={'Colors & Font'}>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Background</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="#a5c9e4"
-                   id="presetBG" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Opacity</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="number" max="1" min="0"
-                   step="0.01" placeholder="0.5" id="presetOpacity" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Color (Text)</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" placeholder="#f0f99c"
-                   id="presetColor" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Font Size</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" placeholder="18px"
-                   id="presetFontSize" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Font Weight</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" placeholder="bolder"
-                   id="presetFontWeight" />
-          </div>
-        </div>
+        <Preset label={'Background'} type="text" placeholder="#a5c9e4"
+                id="presetBG" />
+        <Preset label={'Opacity'} type="number" max="1" min="0"
+                step="0.01" placeholder="0.5" id="presetOpacity" />
+        <Preset label={'Color (Text)'} type="text" placeholder="#f0f99c"
+                id="presetColor" />
+        <Preset label={'Font Size'} type="text" placeholder="18px"
+                id="presetFontSize" />
+        <Preset label={'Font Weight'} type="text" placeholder="bolder"
+                id="presetFontWeight" />
       </PresetGroup>
-
 
       <PresetGroup title={'Size & Spacing'}>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Width</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="100px"
-                   id="presetWidth" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Height</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text" placeholder="120px"
-                   id="presetHeight" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Margin</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" placeholder="5px"
-                   id="presetMargin" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Padding</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" placeholder="10px"
-                   id="presetPadding" />
-          </div>
-        </div>
+        <Preset label={'Width'} type="text" placeholder="100px"
+                id="presetWidth" />
+        <Preset label={'Height'} type="text" placeholder="120px"
+                id="presetHeight" />
+        <Preset label={'Margin'} type="text" placeholder="5px"
+                id="presetMargin" />
+        <Preset label={'Padding'} type="text" placeholder="10px"
+                id="presetPadding" />
       </PresetGroup>
-
 
       <PresetGroup title={'Border & Shadow'}>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Border</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text"
-                   placeholder="5px solid red" id="presetBorder" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Box Shadow</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text"
-                   placeholder="10px 10px 5px 2px rgba(0,0,0,0.75);"
-                   id="presetShadow" />
-          </div>
-        </div>
-        <div className="kf-preset-option">
-          <div className="kf-po-label">Outline</div>
-          <div className="kf-po-value">
-            <input className="kf-po-input" type="text"
-                   placeholder="2px solid red" id="presetOutline" />
-          </div>
-        </div>
+        <Preset label={'Border'} type="text" placeholder="5px solid red"
+                id="presetBorder" />
+        <Preset label={'Box Shadow'} type="text"
+                placeholder="10px 10px 5px 2px rgba(0,0,0,0.75)"
+                id="presetShadow" />
+        <Preset label={'Outline'} type="text" placeholder="2px solid red"
+                id="presetOutline" />
       </PresetGroup>
 
-
       <button id="deleteKeyframePos" className="kf-btn red small full center">
-        Delete Step at&nbsp;<b className="kf-current-step"></b>%
+        Delete Step at <b className="kf-current-step" />%
       </button>
-
     </div>
   )
 }
