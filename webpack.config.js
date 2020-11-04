@@ -12,7 +12,13 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, use: 'babel-loader' },
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        resolve: {
+          extensions: ['.js', '.jsx'],
+        },
+      },
       {
         test: /\.(s[ac]ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
