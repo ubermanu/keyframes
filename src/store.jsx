@@ -1,14 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import reducer from './reducer'
-
-/**
- * Initial state.
- *
- * @type {{element: null}}
- */
-const initialState = {
-  element: null,
-}
+import reducer, { initialState } from './reducer'
 
 /**
  * Store context.
