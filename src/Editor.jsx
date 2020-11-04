@@ -2,27 +2,12 @@ import React, { createContext, useContext, useReducer } from 'react'
 import Sidebar from './Sidebar'
 import Timeline from './Timeline'
 import ElementPicker from './ElementPicker'
-
-const initialStore = {
-  element: null,
-}
-const EditorContext = createContext({})
-export const useEditor = () => useContext(EditorContext)
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'SELECT_ELEMENT':
-      return { ...state, element: action.payload }
-    default:
-      throw new Error()
-  }
-}
+import { useStore, withStore } from './store'
 
 function Editor() {
-  const [state, dispatch] = useReducer(reducer, initialStore)
-
+  const { state } = useStore()
   return (
-    <EditorContext.Provider value={{ state, dispatch }}>
+    <>
       {!state.element && <ElementPicker />}
       {state.element && (
         <>
@@ -31,8 +16,8 @@ function Editor() {
           <style id="kfStyleContainer" />
         </>
       )}
-    </EditorContext.Provider>
+    </>
   )
 }
 
-export default Editor
+export default withStore(Editor)
