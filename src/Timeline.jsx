@@ -1,4 +1,6 @@
 import React from 'react'
+import { useStore } from './store'
+import { SET_ANIMATION_OPTION } from './actions'
 
 function AnimationOption({ label, children }) {
   return (
@@ -10,6 +12,12 @@ function AnimationOption({ label, children }) {
 }
 
 function Timeline() {
+  const { dispatch } = useStore()
+
+  function handleChange(e) {
+    dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
+  }
+
   return (
     <div className="kf-timeline">
       <div className="kf-timeline-nav">
@@ -24,19 +32,22 @@ function Timeline() {
 
         <div className="kftn-mid">
           <AnimationOption label={<span>Animation<br />Duration</span>}>
-            <input name="duration" type="text" value="3s" />
+            <input name="duration" type="text" value="3s"
+                   onChange={handleChange} />
           </AnimationOption>
 
           <AnimationOption label="Iterations">
-            <input name="iterations" type="text" value="infinite" />
+            <input name="iterations" type="text" value="infinite"
+                   onChange={handleChange} />
           </AnimationOption>
 
           <AnimationOption label="Delay">
-            <input name="delay" type="text" value="0s" />
+            <input name="delay" type="text" value="0s"
+                   onChange={handleChange} />
           </AnimationOption>
 
           <AnimationOption label="Timing">
-            <select name="timing">
+            <select name="timing" onChange={handleChange}>
               <option value="linear">Linear</option>
               <option value="ease">Ease</option>
               <option value="ease-in">Ease-In</option>

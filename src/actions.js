@@ -26,3 +26,13 @@ export function ADD_STEP(percent, attributes) {
 export function UPDATE_STEP(percent, attributes) {
   return { type: 'UPDATE_STEP', percent, attributes }
 }
+
+/**
+ * @param option
+ * @param value
+ * @returns {{type: string, value: *, option: *}}
+ * @constructor
+ */
+export function SET_ANIMATION_OPTION(option, value) {
+  return { type: 'SET_ANIMATION_OPTION', option, value }
+}
