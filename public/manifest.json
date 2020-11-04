@@ -1,6 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "React Chrome Extension",
+  "name": "Keyframes",
+  "short_name": "Keyframes",
+  "description": "In-browser CSS Animation creator.",
   "version": "0.1.0",
   "icons": {
     "16": "keyframes-16.png",
@@ -8,11 +10,8 @@
     "128": "keyframes-128.png"
   },
   "browser_action": {
-    "default_icon": {
-      "16": "keyframes-16.png",
-      "48": "keyframes-48.png",
-      "128": "keyframes-128.png"
-    }
+    "default_icon": "icons/keyframes-48.png",
+    "default_title": "Keyframes"
   },
   "background": {
     "scripts": [
