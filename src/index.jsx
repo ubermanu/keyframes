@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import './index.scss'
+import Editor from './Editor'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Editor />
   </React.StrictMode>,
   document.getElementById('chrome-extension'),
 )
