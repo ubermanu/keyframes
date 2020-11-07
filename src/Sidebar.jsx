@@ -36,7 +36,7 @@ function Sidebar() {
             every step, even if it's the same or 0.</small>
         </div>
 
-        <Collapse defaultActiveKey={['1']}>
+        <Collapse defaultActiveKey={['1']} bordered={false}>
           <Panel header="Transform" key="1">
             <PropertyRow label="Rotate">
               <InputProperty name="rotate" />
@@ -67,7 +67,7 @@ function Sidebar() {
             <PropertyRow label="Opacity">
               <InputProperty name="opacity" />
             </PropertyRow>
-            <PropertyRow label="Color (Text)">
+            <PropertyRow label="Color">
               <InputProperty name="color" />
             </PropertyRow>
             <PropertyRow label="Font Size">
