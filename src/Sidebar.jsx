@@ -77,7 +77,8 @@ function Sidebar() {
                   name="outline" />
         </PresetGroup>
 
-        <button className="kf-btn red small full center" onClick={handleDelete}>
+        <button className="kf-btn red small full center"
+                style={{ marginTop: '20px' }} onClick={handleDelete}>
           Delete Step at {currentStep}%
         </button>
       </div>
