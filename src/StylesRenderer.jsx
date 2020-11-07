@@ -44,9 +44,10 @@ function StylesRenderer() {
   function getElementStyles() {
     return `
     @keyframes yourAnimation {
-    ${state.steps.map(({ id, styles }) => `${id}% {
+    ${state.steps.map(({ id, styles }) => `
+      ${id}% {
         ${getStepStyles(styles)}
-      }`)}
+      }`).join('')}
     }
     .elementToAnimate {
       animation: yourAnimation ${animationProperties}
