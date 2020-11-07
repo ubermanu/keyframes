@@ -29,7 +29,11 @@ function reducer(state = initialState, action) {
     case 'SET_CURRENT_STEP':
       return { ...state, currentStep: action.step.id }
     case 'ADD_STEP':
-      return { ...state, steps: [...state.steps, action.step] }
+      return {
+        ...state,
+        currentStep: action.step.id,
+        steps: [...state.steps, action.step],
+      }
     case 'UPDATE_STEP_PROPERTY':
       const step = state.steps.find(({ id }) => action.step.id === id)
       return {
@@ -49,7 +53,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         currentStep: null,
-        steps: [...state.steps.filter(step => action.step.id !== step.id)],
+        steps: [...state.steps.filter(({ id }) => action.step.id !== id)],
       }
     case 'SET_ANIMATION_OPTION':
       if (action.option in state.animation) {
