@@ -25,7 +25,7 @@ function Sidebar() {
             every step, even if it's the same or 0.</small>
         </div>
 
-        <PresetGroup title="Transform">
+        <PresetGroup title="Transform" open={true}>
           <Preset label="Rotate" type="text" placeholder="180deg"
                   name="rotate" />
           <Preset label="Scale" type="number" step="0.1" placeholder="1.5"

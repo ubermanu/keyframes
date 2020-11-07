@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-function PresetGroup({ title, children }) {
-  const [active, setActive] = useState(false)
+function PresetGroup({ title, children, open = false }) {
+  const [active, setActive] = useState(open)
   const toggle = () => setActive(a => !a)
 
   return (
