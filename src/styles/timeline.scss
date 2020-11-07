@@ -10,7 +10,7 @@
   left: 0;
   box-sizing: border-box;
   padding: 0 20px;
-  background-color: fade($white, 95%);
+  background-color: rgba(white, 0.95);
   box-shadow: $extraLightBaseShadow;
   height: 165px;
   transition: 0.2s;
@@ -104,7 +104,7 @@
       position: absolute;
       height: 80%;
       width: 0.6%;
-      background-color: fade($blue, 25%);
+      background-color: rgba(blue, 0.25);
       top: 10%;
       border-radius: 3px;
       z-index: 500000000;
