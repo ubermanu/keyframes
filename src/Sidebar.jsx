@@ -52,19 +52,19 @@ function Sidebar() {
 
       <PresetGroup title="Transform">
         <Preset label="Rotate" type="text" placeholder="180deg"
-                onChange={handleChange} />
+                name="transformRotate" onChange={handleChange} />
         <Preset label="Scale" type="number" step="0.1" placeholder="1.5"
-                onChange={handleChange} />
+                name="transformScale" onChange={handleChange} />
         <Preset label="TranslateX" type="text" placeholder="100px"
-                onChange={handleChange} />
+                name="transformX" onChange={handleChange} />
         <Preset label="TranslateY" type="text" placeholder="-20%"
-                onChange={handleChange} />
+                name="transformY" onChange={handleChange} />
         <Preset label="SkewX" type="text" placeholder="15deg"
-                onChange={handleChange} />
+                name="transformSkewX" onChange={handleChange} />
         <Preset label="SkewY" type="text" placeholder="-20deg"
-                onChange={handleChange} />
+                name="transformSkewY" onChange={handleChange} />
         <Preset label="Transform Origin" type="text" placeholder="50% 50%"
-                onChange={handleChange} />
+                name="transformOrigin" onChange={handleChange} />
       </PresetGroup>
 
       <PresetGroup title="Colors & Font">
