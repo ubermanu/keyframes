@@ -1,31 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Preset from './SidebarPreset'
+import PresetGroup from './SidebarPresetGroup'
 import { DELETE_STEP, UPDATE_STEP_PROPERTY } from './actions'
 import { useStore } from './store'
-
-function PresetGroup({ title, children }) {
-  const [active, setActive] = useState(false)
-  const toggle = () => setActive(a => !a)
-
-  return (
-    <div className="kf-presets">
-      <div className={`kf-presets-header ${active ? 'kf-well-active' : ''}`}
-           onClick={toggle}>{title}</div>
-      <div className="kf-preset-well"
-           style={{ display: active ? 'block' : 'none' }}>{children}</div>
-    </div>
-  )
-}
-
-function Preset({ label, ...inputProps }) {
-  return (
-    <div className="kf-preset-option">
-      <div className="kf-po-label">{label}</div>
-      <div className="kf-po-value">
-        <input className="kf-po-input" {...inputProps} />
-      </div>
-    </div>
-  )
-}
 
 function Sidebar() {
   const { state, dispatch } = useStore()
