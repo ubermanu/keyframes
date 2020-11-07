@@ -1,7 +1,7 @@
 # CSS Keyframes Editor
 
 This is a port of the original Chrome extension from [Michael Bolliger](https://michaelbolliger.com/). <br>
-This project is purely for practise with React and Chrome extensions.
+This project is purely for practice with React and Chrome extensions.
 
 If you need a boilerplate for an injected React App as Chrome extension you can check my other project: https://github.com/ubermanu/react-chrome-extension
 
