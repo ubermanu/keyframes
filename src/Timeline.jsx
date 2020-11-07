@@ -45,12 +45,14 @@ function Timeline() {
     hoverNewStepPos = markerLeft.split('.')[0]
   }
 
-  function handleClick(e) {
+  function handleClick() {
+    stopAnimation()
     console.log(hoverNewStepPos)
     dispatch(ADD_STEP(hoverNewStepPos))
   }
 
   function handleChange(e) {
+    stopAnimation()
     dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
   }
 
