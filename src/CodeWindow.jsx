@@ -17,7 +17,8 @@ function CodeWindow() {
       <div className="kf-code-window" style={{ display: 'block' }}>
         <div id="closeKfCodeWindow" onClick={handleClose}>&times;</div>
         <div className="kf-code-box" style={{ display: 'block' }}
-             contentEditable="true" spellCheck="false">
+             contentEditable="true" spellCheck="false"
+             suppressContentEditableWarning={true}>
           {`/* I hope this was helpful! */
 /* Follow me on Twitter 🐤 @sleumasm to see what I'm up to. */
 /* Also check out my other project I'm working on - Ceev.io. A pretty cool online resume creator 📃. */
