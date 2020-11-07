@@ -42,12 +42,10 @@ function Timeline() {
   }
 
   function handleClick() {
-    stopAnimation()
     dispatch(ADD_STEP(newStepId))
   }
 
   function handleChange(e) {
-    stopAnimation()
     dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
   }
 
