@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
+import 'antd/dist/antd.css'
 import Editor from './Editor.jsx'
 import reportWebVitals from './reportWebVitals.js'
 
