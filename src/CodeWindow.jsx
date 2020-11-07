@@ -18,6 +18,14 @@ function CodeWindow() {
         <div id="closeKfCodeWindow" onClick={handleClose}>&times;</div>
         <div className="kf-code-box" style={{ display: 'block' }}
              contentEditable="true" spellCheck="false">
+          {`/* I hope this was helpful! */
+/* Follow me on Twitter 🐤 @sleumasm to see what I'm up to. */
+/* Also check out my other project I'm working on - Ceev.io. A pretty cool online resume creator 📃. */
+
+/* Your animation code is below! 👇👇👇 */
+___________________________________________
+
+`}
           {getElementStyles(state)}
         </div>
       </div>
