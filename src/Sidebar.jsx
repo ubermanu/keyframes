@@ -1,16 +1,12 @@
 import React from 'react'
 import Preset from './SidebarPreset'
 import PresetGroup from './SidebarPresetGroup'
-import { DELETE_STEP, UPDATE_STEP_PROPERTY } from './actions'
+import { DELETE_STEP } from './actions'
 import { useStore } from './store'
 
 function Sidebar() {
   const { state, dispatch } = useStore()
   const { currentStep } = state
-
-  function handleChange(e) {
-    dispatch(UPDATE_STEP_PROPERTY(currentStep, e.target.name, e.target.value))
-  }
 
   function handleDelete() {
     dispatch(DELETE_STEP(currentStep))
@@ -31,54 +27,54 @@ function Sidebar() {
 
         <PresetGroup title="Transform">
           <Preset label="Rotate" type="text" placeholder="180deg"
-                  name="rotate" onChange={handleChange} />
+                  name="rotate" />
           <Preset label="Scale" type="number" step="0.1" placeholder="1.5"
-                  name="scale" onChange={handleChange} />
+                  name="scale" />
           <Preset label="TranslateX" type="text" placeholder="100px"
-                  name="translateX" onChange={handleChange} />
+                  name="translateX" />
           <Preset label="TranslateY" type="text" placeholder="-20%"
-                  name="translateY" onChange={handleChange} />
+                  name="translateY" />
           <Preset label="SkewX" type="text" placeholder="15deg"
-                  name="skewX" onChange={handleChange} />
+                  name="skewX" />
           <Preset label="SkewY" type="text" placeholder="-20deg"
-                  name="skewY" onChange={handleChange} />
+                  name="skewY" />
           <Preset label="Transform Origin" type="text" placeholder="50% 50%"
-                  name="transform-origin" onChange={handleChange} />
+                  name="transform-origin" />
         </PresetGroup>
 
         <PresetGroup title="Colors & Font">
           <Preset label="Background" type="text" placeholder="#a5c9e4"
-                  name="background" onChange={handleChange} />
+                  name="background" />
           <Preset label="Opacity" type="number" max="1" min="0"
                   step="0.01" placeholder="0.5"
-                  name="opacity" onChange={handleChange} />
+                  name="opacity" />
           <Preset label="Color (Text)" type="text" placeholder="#f0f99c"
-                  name="color" onChange={handleChange} />
+                  name="color" />
           <Preset label="Font Size" type="text" placeholder="18px"
-                  name="font-size" onChange={handleChange} />
+                  name="font-size" />
           <Preset label="Font Weight" type="text" placeholder="bolder"
-                  name="font-weight" onChange={handleChange} />
+                  name="font-weight" />
         </PresetGroup>
 
         <PresetGroup title="Size & Spacing">
           <Preset label="Width" type="text" placeholder="100px"
-                  name="width" onChange={handleChange} />
+                  name="width" />
           <Preset label="Height" type="text" placeholder="120px"
-                  name="height" onChange={handleChange} />
+                  name="height" />
           <Preset label="Margin" type="text" placeholder="5px"
-                  name="margin" onChange={handleChange} />
+                  name="margin" />
           <Preset label="Padding" type="text" placeholder="10px"
-                  name="padding" onChange={handleChange} />
+                  name="padding" />
         </PresetGroup>
 
         <PresetGroup title="Border & Shadow">
           <Preset label="Border" type="text" placeholder="5px solid red"
-                  name="border" onChange={handleChange} />
+                  name="border" />
           <Preset label="Box Shadow" type="text"
                   placeholder="10px 10px 5px 2px rgba(0,0,0,0.75)"
-                  name="box-shadow" onChange={handleChange} />
+                  name="box-shadow" />
           <Preset label="Outline" type="text" placeholder="2px solid red"
-                  name="outline" onChange={handleChange} />
+                  name="outline" />
         </PresetGroup>
 
         <button className="kf-btn red small full center" onClick={handleDelete}>
