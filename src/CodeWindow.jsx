@@ -1,38 +1,27 @@
 import React from 'react'
+import { useStore } from './store'
+import { getElementStyles } from './StylesRenderer'
+import { TOGGLE_CODE_WINDOW } from './actions'
 
 function CodeWindow() {
+  const { state, dispatch } = useStore()
+
+  function handleClose() {
+    dispatch(TOGGLE_CODE_WINDOW(false))
+  }
+
   return (
-    <div className="kf-code-window">
-      <div id="closeKfCodeWindow">&times;</div>
-
-      <div className="kf-code-box" id="kfOutput" contentEditable="true"
-           spellCheck="false"></div>
-
-      <div className="kf-code-box" id="targetCSSCode" contentEditable="true"
-           spellCheck="false">/* Styles for the element being animated */
-
-        display: block;
-        width: 70px;
-        height: 70px;
-        background-color: SlateBlue;
-        border-radius: 3px;
-        margin: 0 auto;
+    <>
+      <div id="kfCodeLightbox" style={{ display: 'block' }}
+           onClick={handleClose} />
+      <div className="kf-code-window" style={{ display: 'block' }}>
+        <div id="closeKfCodeWindow" onClick={handleClose}>&times;</div>
+        <div className="kf-code-box" style={{ display: 'block' }}
+             contentEditable="true" spellCheck="false">
+          {getElementStyles(state)}
+        </div>
       </div>
-
-      <div className="kf-code-box" id="stageCSSCode" contentEditable="true"
-           spellCheck="false">/* Styles for the white stage/container element */
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        width: 80%;
-        height: 80%;
-        background-color: white;
-        margin: 0 auto;
-      </div>
-
-    </div>
+    </>
   )
 }
 

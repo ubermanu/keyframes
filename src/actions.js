@@ -59,3 +59,12 @@ export function DELETE_STEP(stepId) {
 export function SET_ANIMATION_OPTION(option, value) {
   return { type: 'SET_ANIMATION_OPTION', option, value }
 }
+
+/**
+ * @param show
+ * @returns {{showCodeWindow: *, type: string}}
+ * @constructor
+ */
+export function TOGGLE_CODE_WINDOW(show) {
+  return { type: 'TOGGLE_CODE_WINDOW', showCodeWindow: show }
+}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import TimelineStep from './TimelineStep'
 import { useStore } from './store'
-import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
+import { ADD_STEP, SET_ANIMATION_OPTION, TOGGLE_CODE_WINDOW } from './actions'
 
 function AnimationOption({ label, children }) {
   return (
@@ -47,6 +47,10 @@ function Timeline() {
 
   function handleChange(e) {
     dispatch(SET_ANIMATION_OPTION(e.target.name, e.target.value))
+  }
+
+  function handleOpenCode() {
+    dispatch(TOGGLE_CODE_WINDOW(true))
   }
 
   return (
@@ -98,12 +102,10 @@ function Timeline() {
         </div>
 
         <div className="kftn-right">
-
-          <button className="kf-btn green" id="showOutputButton">
+          <button className="kf-btn green" onClick={handleOpenCode}>
             Show Output CSS
           </button>
         </div>
-
       </div>
 
       <div id="kfTimelineBody" onMouseMove={handleMouseMove}

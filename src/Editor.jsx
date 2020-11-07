@@ -3,11 +3,12 @@ import Sidebar from './Sidebar'
 import Timeline from './Timeline'
 import ElementPicker from './ElementPicker'
 import StylesRenderer from './StylesRenderer'
+import CodeWindow from './CodeWindow'
 import { useStore, withStore } from './store'
 
 function Editor() {
   const { state } = useStore()
-  const { element } = state
+  const { element, showCodeWindow } = state
   return (
     <>
       {!element && <ElementPicker />}
@@ -18,6 +19,7 @@ function Editor() {
           <StylesRenderer />
         </>
       )}
+      {showCodeWindow && <CodeWindow />}
     </>
   )
 }

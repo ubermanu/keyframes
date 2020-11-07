@@ -16,6 +16,7 @@ export const initialState = {
     delay: '0s',
     timing: 'linear',
   },
+  showCodeWindow: false,
 }
 
 /**
@@ -63,6 +64,9 @@ function reducer(state = initialState, action) {
         }
       }
       return state
+    case 'TOGGLE_CODE_WINDOW':
+      const { showCodeWindow } = action
+      return { ...state, showCodeWindow }
     default:
       throw new Error()
   }
