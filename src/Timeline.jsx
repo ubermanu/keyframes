@@ -67,22 +67,26 @@ function Timeline() {
 
         <div className="kftn-mid">
           <AnimationOption label={<span>Animation<br />Duration</span>}>
-            <input name="duration" type="text" value="3s"
+            <input name="duration" type="text"
+                   defaultValue={state.animation.duration}
                    onChange={handleChange} />
           </AnimationOption>
 
           <AnimationOption label="Iterations">
-            <input name="iterations" type="text" value="infinite"
+            <input name="iterations" type="text"
+                   defaultValue={state.animation.iterations}
                    onChange={handleChange} style={{ width: '84px' }} />
           </AnimationOption>
 
           <AnimationOption label="Delay">
-            <input name="delay" type="text" value="0s"
+            <input name="delay" type="text"
+                   defaultValue={state.animation.delay}
                    onChange={handleChange} />
           </AnimationOption>
 
           <AnimationOption label="Timing">
             <select name="timing" style={{ width: '84px' }}
+                    defaultValue={state.animation.timing}
                     onChange={handleChange}>
               <option value="linear">Linear</option>
               <option value="ease">Ease</option>
