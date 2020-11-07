@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import TimelineStep from './TimelineStep'
 import { useStore } from './store'
 import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
@@ -15,22 +15,18 @@ function AnimationOption({ label, children }) {
 
 function Timeline() {
   const { state, dispatch } = useStore()
+  const [playing, setPlaying] = useState(false)
   const markerEl = useRef(null)
   let hoverNewStepPos = 0
 
   function startAnimation() {
-    $('#kfStartAnimationButton').css('display', 'none')
-    $('#kfStopAnimationButton').css('display', 'flex')
-    // changeStep(currentStep)
-    $(state.element).addClass('elementToAnimate')
-    $('#timelineTracker').addClass('animate-timeline-tracker')
+    setPlaying(true)
+    state.element.classList.add('elementToAnimate')
   }
 
   function stopAnimation() {
-    $('#kfStopAnimationButton').css('display', 'none')
-    $('#kfStartAnimationButton').css('display', 'flex')
-    $(state.element).removeClass('elementToAnimate')
-    $('#timelineTracker').removeClass('animate-timeline-tracker')
+    setPlaying(false)
+    state.element.classList.remove('elementToAnimate')
   }
 
   function handleMouseMove(e) {
@@ -60,14 +56,16 @@ function Timeline() {
     <div className="kf-timeline">
       <div className="kf-timeline-nav">
         <div className="kftn-left">
-          <button className="kf-btn" id="kfStartAnimationButton"
-                  onClick={startAnimation}>
-            Start Animation
-          </button>
-          <button className="kf-btn red" id="kfStopAnimationButton"
-                  onClick={stopAnimation}>
-            Stop Animation
-          </button>
+          {!playing && (
+            <button className="kf-btn" onClick={startAnimation}>
+              Start Animation
+            </button>
+          )}
+          {playing && (
+            <button className="kf-btn red" onClick={stopAnimation}>
+              Stop Animation
+            </button>
+          )}
         </div>
 
         <div className="kftn-mid">
@@ -108,7 +106,8 @@ function Timeline() {
 
       <div id="kfTimelineBody" onMouseMove={handleMouseMove}
            onClick={handleClick}>
-        <div id="timelineTracker" />
+        <div id="timelineTracker"
+             className={playing && 'animate-timeline-tracker'} />
         <div id="timelineMarker" ref={markerEl}><b /></div>
         {state.steps.map((step, k) => <TimelineStep key={k} {...step} />)}
       </div>
