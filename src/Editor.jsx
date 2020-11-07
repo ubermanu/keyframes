@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Timeline from './Timeline'
 import ElementPicker from './ElementPicker'
+import StylesRenderer from './StylesRenderer'
 import { useStore, withStore } from './store'
 
 function Editor() {
@@ -14,7 +15,7 @@ function Editor() {
         <>
           <Sidebar />
           <Timeline />
-          <style id="kfStyleContainer" />
+          <StylesRenderer />
         </>
       )}
     </>

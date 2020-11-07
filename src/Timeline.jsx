@@ -26,32 +26,10 @@ function Timeline() {
   const markerEl = useRef(null)
   let hoverNewStepPos = 0
 
-  function appendStyles() {
-    // Prepare animation properties
-    let animationProperties = ''
-    animationProperties += state.animation.duration + ' '
-    animationProperties += state.animation.iterations + ' '
-    animationProperties += state.animation.delay + ' '
-    animationProperties += state.animation.timing + ';'
-
-    const kfStyleContainer = $('#kfStyleContainer')
-    kfStyleContainer.empty()
-    kfStyleContainer.append('@keyframes yourAnimation{')
-
-    // $.each(stepStyles, function(key, val) {
-    //   kfStyleContainer.append(key + '%{' + val + '}')
-    // })
-
-    kfStyleContainer.append('}\n')
-    kfStyleContainer.append('.elementToAnimate{ animation: yourAnimation ' + animationProperties + '}')
-    kfStyleContainer.append('.animate-timeline-tracker{ animation: trackerAnimation ' + animationProperties + '}')
-  }
-
   function startAnimation() {
     $('#kfStartAnimationButton').css('display', 'none')
     $('#kfStopAnimationButton').css('display', 'flex')
     // changeStep(currentStep)
-    appendStyles()
     $(state.element).addClass('elementToAnimate')
     $('#timelineTracker').addClass('animate-timeline-tracker')
   }
