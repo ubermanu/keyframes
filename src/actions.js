@@ -9,6 +9,15 @@ export function SELECT_ELEMENT(element) {
 
 /**
  * @param stepId
+ * @returns {{step: {id: *}, type: string}}
+ * @constructor
+ */
+export function SET_CURRENT_STEP(stepId) {
+  return { type: 'SET_CURRENT_STEP', step: { id: stepId } }
+}
+
+/**
+ * @param stepId
  * @returns {{step: {styles: {}, id: *}, type: string}}
  * @constructor
  */

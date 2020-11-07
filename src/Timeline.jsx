@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import TimelineStep from './TimelineStep'
 import { useStore } from './store'
 import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
 import $ from 'jquery'
@@ -8,15 +9,6 @@ function AnimationOption({ label, children }) {
     <div className="kftn-animation-prop">
       <label>{label}</label>
       {children}
-    </div>
-  )
-}
-
-function TimelineStep({ id }) {
-  return (
-    <div className="timeline-step" id={`timelineStep-${id}`}
-         data-step={id} style={{ left: `${id}%` }}>
-      <label>{id}</label>
     </div>
   )
 }

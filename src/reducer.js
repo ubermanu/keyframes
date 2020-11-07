@@ -26,6 +26,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case 'SELECT_ELEMENT':
       return { ...state, element: action.element }
+    case 'SET_CURRENT_STEP':
+      return { ...state, currentStep: action.step.id }
     case 'ADD_STEP':
       return { ...state, steps: [...state.steps, action.step] }
     case 'UPDATE_STEP_PROPERTY':
