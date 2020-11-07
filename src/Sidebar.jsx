@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { UPDATE_STEP_PROPERTY } from './actions'
+import { useStore } from './store'
 
 function PresetGroup({ title, children }) {
   const [active, setActive] = useState(false)
@@ -26,6 +28,12 @@ function Preset({ label, ...inputProps }) {
 }
 
 function Sidebar() {
+  const { state, dispatch } = useStore()
+
+  function handleChange(e) {
+    dispatch(UPDATE_STEP_PROPERTY(state.currentStep, e.target.name, e.target.value))
+  }
+
   return (
     <div className="kf-sidebar">
       <div className="ts-header">

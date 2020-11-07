@@ -8,22 +8,26 @@ export function SELECT_ELEMENT(element) {
 }
 
 /**
- * @param id
- * @returns {{step: {id: *}, type: string}}
+ * @param stepId
+ * @returns {{step: {styles: {}, id: *}, type: string}}
  * @constructor
  */
-export function ADD_STEP(id) {
-  return { type: 'ADD_STEP', step: { id } }
+export function ADD_STEP(stepId) {
+  return { type: 'ADD_STEP', step: { id: stepId, styles: {} } }
 }
 
 /**
- * @param percent
- * @param attributes
- * @returns {{attributes: *, type: string, percent: *}}
+ * @param stepId
+ * @param propertyName
+ * @param value
+ * @returns {{step: {styles: {}, id: *}, type: string}}
  * @constructor
  */
-export function UPDATE_STEP(percent, attributes) {
-  return { type: 'UPDATE_STEP', percent, attributes }
+export function UPDATE_STEP_PROPERTY(stepId, propertyName, value) {
+  return {
+    type: 'UPDATE_STEP_PROPERTY',
+    step: { id: stepId, styles: { [propertyName]: value } },
+  }
 }
 
 /**

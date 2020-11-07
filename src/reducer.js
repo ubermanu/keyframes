@@ -1,5 +1,5 @@
 /**
- * @type {{steps: [], element: null}}
+ * @type {Object}
  */
 export const initialState = {
   element: null,

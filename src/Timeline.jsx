@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useStore } from './store'
 import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
 import $ from 'jquery'
