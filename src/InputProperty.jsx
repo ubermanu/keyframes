@@ -1,8 +1,9 @@
 import React from 'react'
+import { Input } from 'antd'
 import { UPDATE_STEP_PROPERTY } from './actions'
 import { useStore } from './store'
 
-function Preset({ label, ...inputProps }) {
+function InputProperty(inputProps) {
   const { state, dispatch } = useStore()
   const { currentStep } = state
   const { name: propertyName } = inputProps
@@ -15,14 +16,8 @@ function Preset({ label, ...inputProps }) {
   const value = (propertyName in styles) ? styles[propertyName] : ''
 
   return (
-    <div className="kf-preset-option">
-      <div className="kf-po-label">{label}</div>
-      <div className="kf-po-value">
-        <input className="kf-po-input" value={value}
-               onChange={handleChange} {...inputProps} />
-      </div>
-    </div>
+    <Input value={value} onChange={handleChange} {...inputProps} />
   )
 }
 
-export default Preset
+export default InputProperty
