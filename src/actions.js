@@ -25,7 +25,7 @@ export function ADD_STEP(stepId) {
  */
 export function UPDATE_STEP_PROPERTY(stepId, propertyName, value) {
   return {
-    type: 'UPDATE_STEP_PROPERTY',
+    type: 'UPDATE_STEP',
     step: { id: stepId, styles: { [propertyName]: value } },
   }
 }

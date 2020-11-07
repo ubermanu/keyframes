@@ -28,6 +28,8 @@ function reducer(state = initialState, action) {
       return { ...state, element: action.element }
     case 'ADD_STEP':
       return { ...state, steps: [...state.steps, action.step] }
+    case 'UPDATE_STEP':
+      return { ...state, steps: [...state.steps, action.step] }
     case 'SET_ANIMATION_OPTION':
       if (action.option in state.animation) {
         return {
