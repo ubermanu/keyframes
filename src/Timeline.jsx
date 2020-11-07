@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react'
 import TimelineStep from './TimelineStep'
 import { useStore } from './store'
 import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
-import $ from 'jquery'
 
 function AnimationOption({ label, children }) {
   return (
@@ -17,7 +16,7 @@ function Timeline() {
   const { state, dispatch } = useStore()
   const [playing, setPlaying] = useState(false)
   const markerEl = useRef(null)
-  let hoverNewStepPos = 0
+  let newStepId = 0
 
   function startAnimation() {
     setPlaying(true)
@@ -30,21 +29,21 @@ function Timeline() {
   }
 
   function handleMouseMove(e) {
-    const elementMousePos = e.pageX - $(e.target).offset().left + 5
-    const elementWidth = $(e.target).width()
-    const percentagePos = (elementMousePos / elementWidth * 100)
-    const markerLeft = percentagePos.toString().substring(0, 4)
+    const element = e.target;
+    const boundingRect = element.getBoundingClientRect();
+    const elementMousePos = e.pageX - boundingRect.left
+    newStepId = Math.round(elementMousePos / element.offsetWidth * 100)
 
     // FIXME: Marker is slow
-    $(markerEl.current).css('left', markerLeft + '%')
-    $('b', markerEl.current).text(markerLeft.split('.')[0] + '%')
-    hoverNewStepPos = markerLeft.split('.')[0]
+    if (markerEl.current && markerEl.current instanceof HTMLElement) {
+      markerEl.current.style.left = newStepId + '%'
+      markerEl.current.querySelector('b').innerHTML = newStepId + '%'
+    }
   }
 
   function handleClick() {
     stopAnimation()
-    console.log(hoverNewStepPos)
-    dispatch(ADD_STEP(hoverNewStepPos))
+    dispatch(ADD_STEP(newStepId))
   }
 
   function handleChange(e) {

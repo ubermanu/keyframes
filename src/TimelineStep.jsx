@@ -10,9 +10,14 @@ function TimelineStep({ id }) {
     dispatch(SET_CURRENT_STEP(id))
   }
 
+  // Avoid positioning error when hovering a step
+  function handleMouseMove(e) {
+    e.stopPropagation()
+  }
+
   return (
     <div className="timeline-step" style={{ left: `${id}%` }}
-         onClick={handleSelect}>
+         onClick={handleSelect} onMouseMove={handleMouseMove}>
       <label>{id}</label>
     </div>
   )
