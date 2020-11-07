@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UPDATE_STEP_PROPERTY } from './actions'
+import { DELETE_STEP, UPDATE_STEP_PROPERTY } from './actions'
 import { useStore } from './store'
 
 function PresetGroup({ title, children }) {
@@ -32,6 +32,10 @@ function Sidebar() {
 
   function handleChange(e) {
     dispatch(UPDATE_STEP_PROPERTY(state.currentStep, e.target.name, e.target.value))
+  }
+
+  function handleDelete() {
+    dispatch(DELETE_STEP(state.currentStep))
   }
 
   return (
@@ -97,9 +101,10 @@ function Sidebar() {
                 onChange={handleChange} />
       </PresetGroup>
 
-      <button id="deleteKeyframePos" className="kf-btn red small full center">
-        Delete Step at <b className="kf-current-step" />%
-      </button>
+      {state.currentStep !== null &&
+      <button className="kf-btn red small full center" onClick={handleDelete}>
+        Delete Step at {state.currentStep}%
+      </button>}
     </div>
   )
 }

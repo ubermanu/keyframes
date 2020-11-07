@@ -31,6 +31,15 @@ export function UPDATE_STEP_PROPERTY(stepId, propertyName, value) {
 }
 
 /**
+ * @param stepId
+ * @returns {{step: {id: *}, type: string}}
+ * @constructor
+ */
+export function DELETE_STEP(stepId) {
+  return { type: 'DELETE_STEP', step: { id: stepId } }
+}
+
+/**
  * @param option
  * @param value
  * @returns {{type: string, value: *, option: *}}

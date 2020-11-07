@@ -30,6 +30,12 @@ function reducer(state = initialState, action) {
       return { ...state, steps: [...state.steps, action.step] }
     case 'UPDATE_STEP':
       return { ...state, steps: [...state.steps, action.step] }
+    case 'DELETE_STEP':
+      return {
+        ...state,
+        currentStep: null,
+        steps: [...state.steps.filter(step => action.step.id !== step.id)],
+      }
     case 'SET_ANIMATION_OPTION':
       if (action.option in state.animation) {
         return {
