@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React from 'react'
 import Sidebar from './Sidebar'
 import Timeline from './Timeline'
 import ElementPicker from './ElementPicker'
