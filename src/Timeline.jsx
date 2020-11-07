@@ -73,7 +73,7 @@ function Timeline() {
 
           <AnimationOption label="Iterations">
             <input name="iterations" type="text" value="infinite"
-                   onChange={handleChange} />
+                   onChange={handleChange} style={{ width: '84px' }} />
           </AnimationOption>
 
           <AnimationOption label="Delay">
@@ -82,7 +82,8 @@ function Timeline() {
           </AnimationOption>
 
           <AnimationOption label="Timing">
-            <select name="timing" onChange={handleChange}>
+            <select name="timing" style={{ width: '84px' }}
+                    onChange={handleChange}>
               <option value="linear">Linear</option>
               <option value="ease">Ease</option>
               <option value="ease-in">Ease-In</option>
