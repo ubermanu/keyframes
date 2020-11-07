@@ -29,8 +29,8 @@ function Timeline() {
   }
 
   function handleMouseMove(e) {
-    const element = e.target;
-    const boundingRect = element.getBoundingClientRect();
+    const element = e.target
+    const boundingRect = element.getBoundingClientRect()
     const elementMousePos = e.pageX - boundingRect.left
     newStepId = Math.round(elementMousePos / element.offsetWidth * 100)
 
@@ -106,7 +106,7 @@ function Timeline() {
       <div id="kfTimelineBody" onMouseMove={handleMouseMove}
            onClick={handleClick}>
         <div id="timelineTracker"
-             className={playing && 'animate-timeline-tracker'} />
+             className={playing ? 'animate-timeline-tracker' : ''} />
         <div id="timelineMarker" ref={markerEl}><b /></div>
         {state.steps.map((step, k) => <TimelineStep key={k} {...step} />)}
       </div>
