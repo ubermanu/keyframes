@@ -2,7 +2,7 @@ import React from 'react'
 import Preset from './SidebarPreset'
 import { DELETE_STEP } from './actions'
 import { useStore } from './store'
-import { Collapse } from 'antd'
+import { Button, Collapse } from 'antd'
 
 const { Panel } = Collapse
 
@@ -78,9 +78,9 @@ function Sidebar() {
           </Panel>
         </Collapse>
 
-        <button className="kf-btn red small full center" onClick={handleDelete}>
+        <Button type="primary" danger block onClick={handleDelete}>
           Delete Step at {currentStep}%
-        </button>
+        </Button>
       </div>
     )
   } else {
