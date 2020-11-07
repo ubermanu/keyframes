@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useStore } from './store'
 import { ADD_STEP, SET_ANIMATION_OPTION } from './actions'
 import $ from 'jquery'
@@ -26,6 +26,22 @@ function Timeline() {
   const markerEl = useRef(null)
   let hoverNewStepPos = 0
 
+  function startAnimation() {
+    $('#kfStartAnimationButton').css('display', 'none')
+    $('#kfStopAnimationButton').css('display', 'flex')
+    // changeStep(currentStep)
+    // appendStyles()
+    $(state.element).addClass('elementToAnimate')
+    $('#timelineTracker').addClass('animate-timeline-tracker')
+  }
+
+  function stopAnimation() {
+    $('#kfStopAnimationButton').css('display', 'none')
+    $('#kfStartAnimationButton').css('display', 'flex')
+    $(state.element).removeClass('elementToAnimate')
+    $('#timelineTracker').removeClass('animate-timeline-tracker')
+  }
+
   function handleMouseMove(e) {
     const elementMousePos = e.pageX - $(e.target).offset().left + 5
     const elementWidth = $(e.target).width()
@@ -51,10 +67,12 @@ function Timeline() {
     <div className="kf-timeline">
       <div className="kf-timeline-nav">
         <div className="kftn-left">
-          <button className="kf-btn" id="kfStartAnimationButton">
+          <button className="kf-btn" id="kfStartAnimationButton"
+                  onClick={startAnimation}>
             Start Animation
           </button>
-          <button className="kf-btn red" id="kfStopAnimationButton">
+          <button className="kf-btn red" id="kfStopAnimationButton"
+                  onClick={stopAnimation}>
             Stop Animation
           </button>
         </div>
