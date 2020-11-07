@@ -28,8 +28,21 @@ function reducer(state = initialState, action) {
       return { ...state, element: action.element }
     case 'ADD_STEP':
       return { ...state, steps: [...state.steps, action.step] }
-    case 'UPDATE_STEP':
-      return { ...state, steps: [...state.steps, action.step] }
+    case 'UPDATE_STEP_PROPERTY':
+      const step = state.steps.find(({ id }) => action.step.id === id)
+      return {
+        ...state,
+        steps: [
+          ...state.steps.filter(({ id }) => action.step.id !== id),
+          {
+            id: action.step.id,
+            styles: {
+              ...step.styles,
+              [action.propertyName]: action.value,
+            },
+          },
+        ],
+      }
     case 'DELETE_STEP':
       return {
         ...state,

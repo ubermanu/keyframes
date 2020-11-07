@@ -20,13 +20,15 @@ export function ADD_STEP(stepId) {
  * @param stepId
  * @param propertyName
  * @param value
- * @returns {{step: {styles: {}, id: *}, type: string}}
+ * @returns {{propertyName: *, step: {id: *}, type: string, value: *}}
  * @constructor
  */
 export function UPDATE_STEP_PROPERTY(stepId, propertyName, value) {
   return {
-    type: 'UPDATE_STEP',
-    step: { id: stepId, styles: { [propertyName]: value } },
+    type: 'UPDATE_STEP_PROPERTY',
+    step: { id: stepId },
+    propertyName,
+    value,
   }
 }
 
