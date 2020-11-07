@@ -20,12 +20,20 @@ module.exports = {
         },
       },
       {
+        test: /\.(css)$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.(s[ac]ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpg|png|jpeg|gif)$/,
+        test: /\.(jpg|png|jpeg|gif|svg)$/,
         use: 'base64-inline-loader?limit=1000&name=[name].[ext]',
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: 'file-loader?name=fonts/[name].[ext]!static'
       },
     ],
   },
